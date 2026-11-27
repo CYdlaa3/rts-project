@@ -1,55 +1,19 @@
 {
-  "unit": "ms",
-  "utilization": 0.9,
-  "rm_bound": 0.757,
-  "edf_schedulable": true,
-  "tasks": [
-    {
-      "name": "cars",
-      "C": 1,
-      "T": 5,
-      "D": 5,
-      "priority": 1,
-      "response_time": 1,
-      "meets_deadline": true
-    },
-    {
-      "name": "button",
-      "C": 6,
-      "T": 20,
-      "D": 20,
-      "priority": 2,
-      "response_time": 8,
-      "meets_deadline": true
-    },
-    {
-      "name": "lights",
-      "C": 5,
-      "T": 30,
-      "D": 30,
-      "priority": 3,
-      "response_time": 14,
-      "meets_deadline": true
-    },
-    {
-      "name": "report",
-      "C": 14,
-      "T": 60,
-      "D": 60,
-      "priority": 4,
-      "response_time": 53,
-      "meets_deadline": true
-    }
+  "version": 1,
+  "author": "Cordoba Labs",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -20, "left": 150, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led2", "top": -20, "left": 200, "attrs": { "color": "green" } }
   ],
-  "simulation": {
-    "hyperperiod": 60,
-    "RM": {
-      "timeline": "cbbbbcbbllclllrcrrrrcbbbbcbbrrcllllclrrrcbbbbcbbrrcrr--c----",
-      "missed_deadlines": []
-    },
-    "EDF": {
-      "timeline": "cbbbbcbbllclllrcrrrrcbbbbcbbrrcllllclrrrcbbbbcbbrrcrr--c----",
-      "missed_deadlines": []
-    }
-  }
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:18", "led1:A", "red", [] ],
+    [ "led1:C", "esp:GND.1", "black", [] ],
+    [ "esp:19", "led2:A", "green", [] ],
+    [ "led2:C", "esp:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
 }
